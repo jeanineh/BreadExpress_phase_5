@@ -1,0 +1,24 @@
+
+  <h4>Price History</h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th width="225">Price</th>
+        <th width="125">Start Date</th>
+        <th width="200">End Date</th>
+        <th width="200"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% ItemPrice.for_item(@item).each do |item_price| %>
+        <tr>
+          <td><%= item_price.price %></td>
+          <td><%= item_price.start_date %></td>
+          <td><%= item_price.end_date %></td>
+          <td></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table> 
+
+<p>&nbsp;</p>

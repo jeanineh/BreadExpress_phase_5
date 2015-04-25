@@ -3,6 +3,11 @@
     <%= render partial: "item_details" %>
   </div>
 </div>
+<div class="row">
+  <div class="small-7 columns">
+    <%= render partial: "price_history" %>
+  </div>
+</div>
 
 <!-- Add buttons to list all, edit project or destroy object -->
 <%= render partial: "partials/object_options", locals: {model_name: "item", object: @item}  %>
