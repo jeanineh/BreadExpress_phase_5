@@ -4,7 +4,7 @@ BreadExpress::Application.routes.draw do
   resources :addresses
   resources :customers
   resources :orders
-
+  resources :items
   
   # Authentication routes
 

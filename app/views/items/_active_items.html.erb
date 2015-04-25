@@ -1,0 +1,29 @@
+<% if @active_items.empty? %>
+  <h4>No active items at this time.</h4>
+<% else %>
+  <h4>Active Items</h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th width="225">Name</th>
+        <th width="125">Category</th>
+        <th width="200">Description</th>
+        <th width="200">Units</th>
+        <th width="200">Weight</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @active_items.each do |item| %>
+        <tr>
+          <td><%= link_to item.name, item_path(item) %></td>
+          <td><%= item.category %></td>
+          <td><%= item.description %></td>
+          <td><%= item.units_per_item %></td>
+          <td><%= item.weight %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<%= will_paginate @active_items, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
+<% end %>
+<p>&nbsp;</p>

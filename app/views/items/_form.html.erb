@@ -1,0 +1,20 @@
+<%= simple_form_for @item, html: { class: 'form-horizontal' } do |f| %>
+  <fieldset>
+    <legend><%= controller.action_name.capitalize %> Item</legend>
+
+    <%= f.input :name, input_html: {class: "avg"} %>
+    <%= f.input :category, input_html: {class: "avg"} %>
+    <%= f.input :units_per_item, input_html: {class: "avg"} %>
+    <%= f.input :weight, input_html: {class: "avg"} %>
+    <div class="field">
+      <%= f.label :picture %><br />
+      <%= f.file_field :picture %>
+    </div>
+    <%= f.input :description, input_html: {class: "avg"} %>
+
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'button radius' %>
+      <%= link_to 'Cancel', items_path, :class => 'button alert radius' %>
+    </div>
+  </fieldset>
+<% end %>
