@@ -28,6 +28,10 @@ class User < ActiveRecord::Base
     role.downcase.to_sym == authorized_role
   end
 
+  def self.authenticate(username, password)
+    find_by_username(username).try(:authenticate, password)
+  end
+
   # Callbacks
   before_destroy :is_never_destroyable
   

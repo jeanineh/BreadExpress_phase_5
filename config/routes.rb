@@ -1,11 +1,15 @@
 BreadExpress::Application.routes.draw do
 
+  get "sessions/new"
+  get "sessions/create"
+  get "sessions/destroy"
   # Routes for main resources
   resources :addresses
   resources :customers
   resources :orders
   resources :items
-  
+  resources :users
+  resources :sessions
   # Authentication routes
 
 
@@ -22,7 +26,9 @@ BreadExpress::Application.routes.draw do
   root :to => 'home#home'  
   
   # Named routes
-
+  get 'signup' => 'customers#new', :as => :signup
+  get 'login' => 'sessions#new', :as => :login
+  get 'logout' => 'sessions#destroy', :as => :logout
 
 
   
