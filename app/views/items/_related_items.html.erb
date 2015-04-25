@@ -1,0 +1,9 @@
+<h4>You might also like: </h4>
+<table>
+  <% Item.for_category(@item.category).each do |item| %>
+    <td><%= item.name %></td>
+  <% end %>
+  </tr>
+</table>
+
+
