@@ -6,11 +6,11 @@
     <%= f.input :category, input_html: {class: "avg"} %>
     <%= f.input :units_per_item, input_html: {class: "avg"} %>
     <%= f.input :weight, input_html: {class: "avg"} %>
-    <div class="field">
-      <%= f.label :picture %><br />
+    <%= f.input :description, input_html: {class: "avg"} %>
+    <div class="avg">
+      <%= f.label :picture %>
       <%= f.file_field :picture %>
     </div>
-    <%= f.input :description, input_html: {class: "avg"} %>
 
     <div class="form-actions">
       <%= f.submit nil, :class => 'button radius' %>
