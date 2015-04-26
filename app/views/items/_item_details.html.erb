@@ -17,6 +17,13 @@
 </p>
 
 <p>
+  <b>Current Price</b>: <%= @item.current_price %>
+  <% if logged_in? && current_user.role?(:admin) %>
+    &nbsp;&nbsp;<%= link_to "Edit Price", edit_item_path %>
+  <% end %>
+</p>
+
+<p>
   <b>Units</b>: <%= @item.units_per_item %>
 </p>
 

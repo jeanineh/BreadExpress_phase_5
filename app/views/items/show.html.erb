@@ -8,11 +8,13 @@
     <%= render partial: "price_history" %>
   </div>
 </div>
-<div class="row">
-  <div class="small-7 columns">
-    <%= render partial: "related_items" %>
+<% if logged_in? && current_user.role?(:customer) %>
+  <div class="row">
+    <div class="small-7 columns">
+      <%= render partial: "related_items" %>
+    </div>
   </div>
-</div>
+<% end %>
 
 <!-- Add buttons to list all, edit project or destroy object -->
 <%= render partial: "partials/object_options", locals: {model_name: "item", object: @item}  %>
