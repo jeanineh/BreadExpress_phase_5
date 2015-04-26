@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  
   def index
   	@all_items = Item.alphabetical.paginate(:page => params[:page]).per_page(9)
   	@inactive_items = Item.inactive.alphabetical.paginate(:page => params[:page]).per_page(9)
@@ -7,6 +8,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @item_prices = @item.item_prices.chronological.paginate(:page => params[:page]).per_page(5)
   end
 
   def new
