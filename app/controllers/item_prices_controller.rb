@@ -10,8 +10,11 @@ class ItemPricesController < ApplicationController
   	@item_price = ItemPrice.new(item_price_params)
 
     if @item_price.save
-      @item_prices = @item_price.item.item_prices.chronological.paginate(:page => params[:page]).per_page(10)
-      redirect_to @item, notice: "Price was added to the system."
+      respond_to do |format|
+        format.html { redirect_to items_path, notice: "Price was added to the system." }
+        @item_prices = @item_price.item.item_prices.chronological.paginate(:page => params[:page]).per_page(10)
+        format.js
+      end
     else
       render action: 'new'
     end

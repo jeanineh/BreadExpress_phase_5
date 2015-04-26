@@ -4,7 +4,7 @@
 
     <%= f.input :price, input_html: {class: "avg"} %>
     <%= f.input :start_date, input_html: {id: "datepicker"} %>
-
+    <%= f.input :item_id, collection: Item.active.alphabetical, input_html: {class: "avg"} %>
 
     <div class="form-actions">
       <%= f.submit nil, :class => 'button radius' %>
