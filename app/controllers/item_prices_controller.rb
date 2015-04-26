@@ -13,7 +13,8 @@ class ItemPricesController < ApplicationController
       respond_to do |format|
         format.html { redirect_to items_path, notice: "Price was added to the system." }
         @item_prices = @item_price.item.item_prices.chronological.paginate(:page => params[:page]).per_page(10)
-        format.js
+        #@item = @item_price.item
+        format.js 
       end
     else
       render action: 'new'
