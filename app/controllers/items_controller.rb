@@ -11,6 +11,18 @@ class ItemsController < ApplicationController
     @item_prices = @item.item_prices.chronological.paginate(:page => params[:page]).per_page(5)
   end
 
+  def breads
+    @breads = Item.for_category("bread").alphabetical.paginate(:page => params[:page]).per_page(9)
+  end
+
+  def muffins
+    @muffins = Item.for_category("muffins").alphabetical.paginate(:page => params[:page]).per_page(9)
+  end
+
+  def pastries
+    @pastries = Item.for_category("pastries").alphabetical.paginate(:page => params[:page]).per_page(9)
+  end
+
   def new
     @item = Item.new
   end
