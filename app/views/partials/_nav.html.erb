@@ -5,7 +5,14 @@
         <!-- link to home -->
         <li><%= link_to "Home", home_path %></li>
         <% if !logged_in? %>
-          <li><%= link_to "View Menu", items_path %></li>
+          <li class="has-dropdown">
+            <%= link_to "View Menu", items_path %>
+            <ul class="dropdown">
+              <li><%= link_to "Breads", breads_path %></li>
+              <li><%= link_to "Muffins", muffins_path %></li>
+              <li><%= link_to "Pastries", pastries_path %></li>
+            </ul>
+          </li>
         <% end %>
         <% if logged_in? && (current_user.role?(:admin) || current_user.role?(:customer)) %>
           <!-- options for orders -->
