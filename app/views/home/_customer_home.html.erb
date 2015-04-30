@@ -1,29 +1,32 @@
 <h3>Welcome, <%= current_user.customer.first_name %>.</h3>
-<br />
+<em>A customer since <%= current_user.customer.created_at.year %></em>
+<br /><br />
 <div class="row">
-	<div class="small-7 columns">
-		<p>
-			Bread Express is the smallest, but absolutely best, online bakery 
-			we know of.  You should order lots of our products now.  They are
-			delicious, nutritious and amazing in every way.  Why are you still 
-			reading this?  You should be ordering bread right now.  Stop reading 
-			and start ordering.  (Still reading? What are you waiting for?)
-		</p>
-		<%= link_to 'EXPLORE BREADS', items_path, :class => 'button radius' %>
-	</div>
-	<div class="small-1 columns">
-		&nbsp;
-	</div>
-	<div class="small-4 columns">
-		<div class="panel clearfix">
-			<h3>Customers:</h3>
-			<p>
-				If you are a registered user, 
-			  <%= link_to "click here to login", login_path %>. If you want 
-			  to create an account with us, <%= link_to "please click to register", signup_path %>.
-			</p>
-		</div>
-	</div>
+  <div class="small-7 columns">
+    <div class="panel callout">
+      <h4>Currently Trending Breads</h4>
+      <%= image_tag 'muffins.jpg', :class=>'small_icon' %>
+      <p>Whether you’re eating them on the go or serving them up at brunch, muffins are a classic, and for good reason. This is currently the most popular type of bread we offer at BreadExpress! </p>
+      <%= link_to "See Our Muffins", muffins_path, class: 'button success' %>
+    </div><br /><br />
+    <div class="panel callout">
+      <h4>What Other Customers Are Looking At Right Now</h4>
+      <%= image_tag 'pastry.jpg', :class=>'smaller_icon' %><%= image_tag 'pastry2.jpg', :class=>'smaller_icon' %><%= image_tag 'cinammon.jpg', :class=>'smaller_icon' %>
+    </div>
+  </div>
+  <div class="small-1 columns">
+    &nbsp;
+  </div>
+  <div class="small-4 columns">
+    <div class="panel clearfix">
+      <h3>Customers:</h3>
+        <p>
+          If you are a registered user, 
+          <%= link_to "click here to login", login_path %>. If you want 
+          to create an account with us, <%= link_to "please click to register", signup_path %>.
+        </p>
+    </div>
+  </div>
 </div>
 
 

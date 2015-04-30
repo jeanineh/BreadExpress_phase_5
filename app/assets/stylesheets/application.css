@@ -14,3 +14,13 @@
  *= require simple_form
  *= require jquery-ui
  */
+
+.small_icon {
+	height: 80%;
+	width: 80%;
+}
+
+.smaller_icon {
+	height: 100px;
+	width: 25%;
+}
