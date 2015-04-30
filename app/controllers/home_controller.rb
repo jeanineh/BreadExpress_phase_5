@@ -2,8 +2,8 @@ class HomeController < ApplicationController
   include BreadExpressHelpers::Baking
 
   def home
-
-
+    @previous_orders = current_user.customer.orders.chronological.to_a
+   
   end
 
   def about
