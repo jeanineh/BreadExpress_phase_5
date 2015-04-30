@@ -1,3 +1,6 @@
-
-<%= render :partial => 'general_home' %>
+<% if logged_in? && current_user.role?(:customer) %>
+  <%= render :partial => 'customer_home' %>
+<% else %>
+  <%= render :partial => 'general_home' %>
+<% end %>
 

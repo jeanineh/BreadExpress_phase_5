@@ -9,6 +9,8 @@
 <p>
   <% unless @item.picture.nil? %>
     <p><%= image_tag @item.picture %></p>
+  <% else %>
+    <p><%= image_tag "img_not_available.png" %>
   <% end %>
 </p>
   

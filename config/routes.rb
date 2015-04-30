@@ -22,6 +22,7 @@ BreadExpress::Application.routes.draw do
   get 'breads' => 'items#breads', as: :breads
   get 'muffins' => 'items#muffins', as: :muffins
   get 'pastries' => 'items#pastries', as: :pastries
+  get 'add_to_cart' => "items#add_to_cart", as: :add_to_cart
   
   # Set the root url
   root :to => 'home#home'  
