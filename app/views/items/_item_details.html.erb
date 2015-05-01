@@ -16,11 +16,11 @@
   
 
 <p>
-  <b>Category</b>: <%= @item.category %>
+  <b>Category</b>: <%= @item.category.capitalize %>
 </p>
 
 <p>
-  <b>Current Price</b>: <%= @item.current_price %>
+  <b>Current Price</b>: <%= number_to_currency @item.current_price %>
   <%= link_to(new_item_price_path(item_id: @item.id), id: 'new_price_link', class: 'button tiny radius', remote: true) do %>
   <i class="fa fa-clipboard"></i>
   &nbsp;Add Price
@@ -31,9 +31,14 @@
   <b>Units</b>: <%= @item.units_per_item %>
 </p>
 
-
 <p>
-  <b>Active</b>: <%= @item.active ? 'Yes' : 'No' %>
+  <b>Total weight</b>: <%= @item.weight %> lbs.
 </p>
+
+<% if logged_in? && current_user.role?(:admin) %>
+  <p>
+    <b>Active</b>: <%= @item.active ? 'Yes' : 'No' %>
+  </p>
+<% end %>
 </div>
 

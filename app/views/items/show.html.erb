@@ -3,12 +3,14 @@
     <%= render partial: "item_details" %>
   </div>
 </div>
-<div class="row">
-  <div class="small-7 columns">
-    <h4>Price History</h4>
-    <%= render partial: "price_history" %>
+<% if logged_in? && current_user.role?(:admin) %>
+  <div class="row">
+    <div class="small-7 columns">
+      <h4>Price History</h4>
+      <%= render partial: "price_history" %>
+    </div>
   </div>
-</div>
+<% end %>
 <% if logged_in? && current_user.role?(:customer) %>
   <div class="row">
     <div class="small-7 columns">

@@ -3,7 +3,7 @@
     <legend><%= controller.action_name.capitalize %> Item</legend>
 
     <%= f.input :name, input_html: {class: "avg"} %>
-    <%= f.input :category, input_html: {class: "avg"} %>
+    <%= f.input :category, collection: [['Bread','bread'],['Muffins','muffins'],['Pastries','pastries']], include_blank: true, input_html: {class: "avg"} %>
     <%= f.input :units_per_item, input_html: {class: "avg"} %>
     <%= f.input :weight, input_html: {class: "avg"} %>
     <%= f.input :description, input_html: {class: "avg"} %>

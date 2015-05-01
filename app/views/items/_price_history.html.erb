@@ -10,9 +10,11 @@
     <tbody>
       <% @item_prices.each do |item_price| %>
         <tr>
-          <td><%= item_price.price %></td>
-          <td><%= item_price.start_date %></td>
-          <td><%= item_price.end_date %></td>
+          <td><%= number_to_currency item_price.price %></td>
+          <td><%= item_price.start_date.strftime('%m-%d-%y') %></td>
+          <% unless item_price.end_date.nil? %>
+            <td><%= item_price.end_date.strftime('%m-%d-%y') %></td>
+          <% end %>
           <td></td>
         </tr>
       <% end %>

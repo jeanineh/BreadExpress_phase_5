@@ -53,6 +53,7 @@ Feature: Manage items
     And I should see "$5.75"
     And I should see "Total weight: 0.9 lbs."
     And I should see "Price History"
+    Then show me the page
     And I should see "$5.50"
     And I should see "$4.95"
     And I should not see "Chocolate Zucchini Muffins"
