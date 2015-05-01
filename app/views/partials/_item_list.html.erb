@@ -19,7 +19,7 @@
           <td><%= item.units_per_item %> <%= item.category == 'bread' ? 'loaf' : item.category %></td>
           <% if controller.controller_name == 'orders' && logged_in? %>
             <td>
-              <%= link_to(add_to_cart_path(item.id), class: 'button tiny radius') do %>
+              <%= link_to(add_to_cart_path(:id => item.id), class: 'button tiny radius') do %>
                 &nbsp;Add to Cart&nbsp;
               <% end %>
             </td>

@@ -70,6 +70,8 @@ class OrdersController < ApplicationController
 
   #cart
   def add_to_cart
+    @item = Item.find(params[:id])
+    add_item_to_cart(@item.id)
     redirect_to menu_path, notice: "Item was added successfully to your cart."
   end
 
