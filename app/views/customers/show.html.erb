@@ -8,4 +8,6 @@
 </div>
 
 <!-- Add buttons to list all, edit project or destroy object -->
-<%= render partial: "partials/object_options", locals: {model_name: "customer", object: @customer}  %>
+<% if logged_in? && current_user.role?(:admin) %>
+  <%= render partial: "partials/object_options", locals: {model_name: "customer", object: @customer}  %>
+<% end %>

@@ -19,10 +19,12 @@ BreadExpress::Application.routes.draw do
   get 'privacy' => 'home#privacy', as: :privacy
   get 'search' => 'home#search', as: :search
   get 'cylon' => 'errors#cylon', as: :cylon
-  get 'breads' => 'items#breads', as: :breads
-  get 'muffins' => 'items#muffins', as: :muffins
-  get 'pastries' => 'items#pastries', as: :pastries
-  get 'add_to_cart' => "items#add_to_cart", as: :add_to_cart
+  get 'breads' => 'orders#breads', as: :breads
+  get 'muffins' => 'orders#muffins', as: :muffins
+  get 'pastries' => 'orders#pastries', as: :pastries
+  get 'add_to_cart' => 'orders#add_to_cart', as: :add_to_cart
+  get 'menu' => 'orders#menu', as: :menu
+  get 'cart' => 'orders#cart', as: :cart
   
   # Set the root url
   root :to => 'home#home'  

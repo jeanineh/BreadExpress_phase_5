@@ -1,0 +1,25 @@
+<% if @all_cart_items.empty? %>
+  <h4 class="center">No items currently in your cart.</h4>
+<% else %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th width="300">Item</th>
+        <th width="100">Price</th>
+        <th width="100">Quantity</th>
+        <% if controller.controller_name == 'orders' %>
+          <th width="100">&nbsp;</th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @all_cart_items.each do |order_item| %>
+        <tr>
+          <td><%= link_to order_item.item.name, item_path(order_item.item) %></td>
+          <td><%= number_to_currency order_item.item.current_price %></td>
+          <td><%= order_item.quantity %> <%= item.category == 'bread' ? 'loaf' : item.category %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

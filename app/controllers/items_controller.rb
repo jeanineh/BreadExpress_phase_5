@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  include BreadExpressHelpers::Cart
+
+  #CRUD
   def index
   	@all_items = Item.alphabetical.paginate(:page => params[:page]).per_page(9)
   	@inactive_items = Item.inactive.alphabetical.paginate(:page => params[:page]).per_page(9)
@@ -9,18 +10,6 @@ class ItemsController < ApplicationController
 
   def show
     @item_prices = @item.item_prices.chronological.paginate(:page => params[:page]).per_page(5)
-  end
-
-  def breads
-    @breads = Item.for_category("bread").alphabetical.paginate(:page => params[:page]).per_page(9)
-  end
-
-  def muffins
-    @muffins = Item.for_category("muffins").alphabetical.paginate(:page => params[:page]).per_page(9)
-  end
-
-  def pastries
-    @pastries = Item.for_category("pastries").alphabetical.paginate(:page => params[:page]).per_page(9)
   end
 
   def new

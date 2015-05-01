@@ -6,7 +6,7 @@
         <li><%= link_to "Home", home_path %></li>
         <% if !logged_in? %>
           <li class="has-dropdown">
-            <%= link_to "View Menu", items_path %>
+            <%= link_to "View Menu", menu_path %>
             <ul class="dropdown">
               <li><%= link_to "Breads", breads_path %></li>
               <li><%= link_to "Muffins", muffins_path %></li>
@@ -33,21 +33,30 @@
             </ul>
           </li>
           <!-- options for items -->
-          <li class="has-dropdown">
-            <%= link_to "Items", items_path %>
-            <ul class="dropdown">
-              <li><%= link_to "All Items", items_path %></li>
-              <li><%= link_to "Add an Item", new_item_path %></li>
-              <li><%= link_to "Add an Item Price", new_item_price_path %></li>
-            </ul>
-          </li>
+          <% if logged_in? && current_user.role?(:admin) %>
+            <li class="has-dropdown">
+              <%= link_to "Items", items_path %>
+              <ul class="dropdown">
+                <li><%= link_to "All Items", items_path %></li>
+                <li><%= link_to "Add an Item", new_item_path %></li>
+                <li><%= link_to "Add an Item Price", new_item_price_path %></li>
+              </ul>
+            </li>
+          <% else %>
+            <li class="right">
+              <%= link_to "Menu", menu_path %>
+            </li>
+          <% end %>
+
         <% end %>
         </ul>
         <ul class="right">
-        <li class="right">
+          <li class="right">
           <% if logged_in? %>
             <%= link_to 'Logout', logout_path %>
-            </li><li><%= link_to "#{current_user.username}:#{current_user.role }" %></li>
+          </li>
+          <li><%= link_to "#{current_user.username}:#{current_user.role }" %></li>
+          <li><%= link_to "My Cart", cart_path %></li>
           <% else %>
             <%= link_to 'Login', login_path %></li>
           <% end %>

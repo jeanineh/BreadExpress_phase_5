@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   include BreadExpressHelpers::Cart
 
-  before_action :check_login
+  #before_action :check_login
   before_action :set_order, only: [:show, :update, :destroy]
  # authorize_resource
   
@@ -51,6 +51,31 @@ class OrdersController < ApplicationController
     @order.destroy
     redirect_to orders_url, notice: "This order was removed from the system."
   end
+
+  #other pages
+  def breads
+    @breads = Item.for_category("bread").alphabetical.paginate(:page => params[:page]).per_page(9)
+  end
+
+  def muffins
+    @muffins = Item.for_category("muffins").alphabetical.paginate(:page => params[:page]).per_page(9)
+  end
+
+  def pastries
+    @pastries = Item.for_category("pastries").alphabetical.paginate(:page => params[:page]).per_page(9)
+  end
+
+  def menu
+  end
+
+  #cart
+  def add_to_cart
+    redirect_to menu_path, notice: "Item was added successfully to your cart."
+  end
+
+  def cart
+    @all_cart_items = get_list_of_items_in_cart
+  end 
 
   private
   def set_order

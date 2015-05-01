@@ -2,7 +2,9 @@ class HomeController < ApplicationController
   include BreadExpressHelpers::Baking
 
   def home
-    @previous_orders = current_user.customer.orders.chronological.to_a
+    if logged_in? && current_user.role?(:customer)
+      @previous_orders = current_user.customer.orders.chronological.to_a
+    end
    
   end
 
