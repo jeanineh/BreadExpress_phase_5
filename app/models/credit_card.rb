@@ -28,7 +28,7 @@
     
     def expired?
       today = Date.today
-      expiration_year < today.year or (expiration_year == today.year and expiration_month < today.month)
+      expiration_year.to_i < today.year or (expiration_year.to_i == today.year and expiration_month.to_i < today.month)
     end
     
     def valid?

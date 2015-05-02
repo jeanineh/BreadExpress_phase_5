@@ -25,14 +25,14 @@ class OrdersController < ApplicationController
   end
 
   def new
-
+    @order = Order.new
   end
 
   def create
     @order = Order.new(order_params)
-
+    @order.date = Date.today
     if @order.save
-
+      @order.pay
       redirect_to @order, notice: "Thank you for ordering from Bread Express."
     else
       render action: 'new'
@@ -91,7 +91,7 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:address_id)
+    params.require(:order).permit(:address_id, :customer_id, :grand_total, :credit_card_number, :expiration_year, :expiration_month, :payment_receipt, :date)
   end
 
 

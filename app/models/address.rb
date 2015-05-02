@@ -28,6 +28,10 @@ class Address < ActiveRecord::Base
     Address.where(customer_id: self.customer_id, recipient: self.recipient, zip: self.zip).size == 1
   end
 
+  def name
+    "#{self.recipient} : #{self.street_1}"
+  end
+
   # Callbacks
   before_destroy :is_destroyable?
   after_rollback :make_inactive_if_trying_to_destroy
