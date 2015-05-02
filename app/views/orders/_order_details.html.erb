@@ -21,6 +21,10 @@
 </p>
 
 <p>
+  <b>Payment Method</b>: <%= Base64.decode64(@order.payment_receipt).split(':')[-1]  %>
+</p>
+
+<p>
   <%= render partial: "partials/order_item_list", locals: {order_items: @order_items, date: @order.date} %>
 </p>
 
