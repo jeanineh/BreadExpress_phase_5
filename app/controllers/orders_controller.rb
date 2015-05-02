@@ -72,7 +72,13 @@ class OrdersController < ApplicationController
   def add_to_cart
     @item = Item.find(params[:id])
     add_item_to_cart(@item.id)
-    redirect_to menu_path, notice: "Item was added successfully to your cart."
+    redirect_to cart_path, notice: "Added #{ @item.name } to your cart."
+  end
+
+  def remove_from_cart
+    @item = Item.find(params[:id])
+    remove_item_from_cart(@item.id)
+    redirect_to cart_path, notice: "Removed #{ @item.name } from your cart."
   end
 
   def cart

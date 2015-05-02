@@ -18,6 +18,7 @@
           <td><%= link_to order_item.item.name, item_path(order_item.item) %></td>
           <td><%= number_to_currency order_item.item.current_price %></td>
           <td><%= order_item.quantity %> <%= order_item.item.category == 'bread' ? 'loaf' : order_item.item.item.category %></td>
+          <td><%= link_to "Delete from my cart", remove_from_cart_path(:id => order_item.item.id), class: 'button tiny radius' %></td>
         </tr>
       <% end %>
     </tbody>

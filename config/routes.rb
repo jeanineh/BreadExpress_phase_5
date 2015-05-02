@@ -19,10 +19,13 @@ BreadExpress::Application.routes.draw do
   get 'privacy' => 'home#privacy', as: :privacy
   get 'search' => 'home#search', as: :search
   get 'cylon' => 'errors#cylon', as: :cylon
+
   get 'breads' => 'orders#breads', as: :breads
   get 'muffins' => 'orders#muffins', as: :muffins
   get 'pastries' => 'orders#pastries', as: :pastries
+
   get 'add_to_cart' => 'orders#add_to_cart', as: :add_to_cart
+  get 'remove_from_cart' => 'orders#remove_from_cart', as: :remove_from_cart
   get 'menu' => 'orders#menu', as: :menu
   get 'cart' => 'orders#cart', as: :cart
   
