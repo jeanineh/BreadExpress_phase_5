@@ -57,6 +57,10 @@ class Order < ActiveRecord::Base
     credit_card.type.nil? ? "N/A" : credit_card.type.name
   end
 
+  def is_destroyable?
+    self.order_items.shipped.empty?
+  end
+
   # Callbacks
   before_destroy :is_destroyable?
   after_destroy :remove_order_items
@@ -97,9 +101,7 @@ class Order < ActiveRecord::Base
     true
   end
 
-  def is_destroyable?
-    self.order_items.shipped.empty?
-  end
+  
 
   def remove_order_items
     self.order_items.each{ |oi| oi.destroy }

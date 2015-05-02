@@ -31,6 +31,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.date = Date.today
+    @order.grand_total = calculate_cart_items_cost + @order.shipping_costs
     if @order.save
       save_each_item_in_cart(@order)
       @order.pay
@@ -96,11 +97,5 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:address_id, :customer_id, :grand_total, :credit_card_number, :expiration_year, :expiration_month, :payment_receipt, :date)
   end
-
-
-
-
-
-
 
 end

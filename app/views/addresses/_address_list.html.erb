@@ -12,6 +12,7 @@
       <th>Address</th>
       <th>Billing?</th>
       <th>&nbsp;</th>
+      <th>&nbsp;</th>
     </tr>
   </thead>
   <tbody>
@@ -30,6 +31,7 @@
             &nbsp;Edit&nbsp;
           <% end %>
         </td>
+        <td><%= link_to "Delete", address, confirm: 'Are you sure?', method: :delete, class: 'button tiny radius warning' %></td>
       </tr>
     <% end %>
   </tbody>
