@@ -24,6 +24,18 @@ class HomeController < ApplicationController
     @pending_orders = Order.not_shipped.chronological.paginate(:page => params[:page]).per_page(5)
   end
 
+  def mark_unshipped
+    @order_item = OrderItem.find(params[:id])
+    if @order_item.shipped_on == nil
+      @order_item.shipped_on = Date.today
+    else
+      @order_item.shipped_on = nil
+    end
+    @order_item.save!
+    @pending_orders = Order.not_shipped.chronological.paginate(:page => params[:page]).per_page(5)
+  end
+
+
   def about
   end
 

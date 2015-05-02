@@ -1,9 +1,9 @@
-
+<div id="order_items_shipper">
 <% if @pending_orders.nil? %>
   <h4>No pending orders at this time.</h4>
 <% else %> 
   <h4>Pending Orders</h4>
-  <table class="table table-striped", id="#order_items_shipper">
+  <table class="table table-striped">
     <thead>
       <tr>
         <th width="100">Date</th>
@@ -40,6 +40,7 @@
   </tbody>
 </table>
 <% end %>	
+</div>
     
 
 
