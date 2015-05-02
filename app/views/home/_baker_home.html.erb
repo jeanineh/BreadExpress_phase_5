@@ -1,0 +1,73 @@
+
+<h4> Welcome, Baker</h4>
+<% if @breads_list.nil? && @muffins_list.nil? && @pastries_list.nil? %>
+  <h4>No items to bake at this time.</h4>
+<% else %> 
+  <% if !@breads_list.nil? %>
+  <h5>Breads to Bake</h5>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th width="225">Name</th>
+        <th width="250">Quantity</th>
+        <th width="250">Units</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @breads_list.each do |item, quantity| %>
+      <tr>
+        <td><%= Item.find(item).name %></td>
+        <td><%= quantity %></td>
+        <td><%= Item.find(item).units_per_item %>
+    <% end %>
+    </tbody>
+  </table>
+  <% end %>
+
+  <!-- Muffins -->
+  <% if !@muffins_list.nil? %>
+  <h5>Muffins to Bake</h5>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th width="225">Name</th>
+        <th width="250">Quantity</th>
+        <th width="250">Units</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @muffins_list.each do |item, quantity| %>
+      <tr>
+        <td><%= Item.find(item).name %></td>
+        <td><%= quantity %></td>
+        <td><%= Item.find(item).units_per_item %>
+    <% end %>
+    </tbody>
+  </table>
+  <% end %>
+
+  <!-- Pastries -->
+  <% if !@pastries_list.nil? %>
+  <h5>Pastries to Bake</h5>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th width="225">Name</th>
+        <th width="250">Quantity</th>
+        <th width="250">Units</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @pastries_list.each do |item, quantity| %>
+      <tr>
+        <td><%= Item.find(item).name %></td>
+        <td><%= quantity %></td>
+        <td><%= Item.find(item).units_per_item %>
+    <% end %>
+    </tbody>
+  </table>
+  <% end %>
+
+<% end %>	
+
+    

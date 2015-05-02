@@ -9,28 +9,26 @@ class HomeController < ApplicationController
     if logged_in? && current_user.role?(:shipper)
       @pending_orders = Order.not_shipped.chronological.paginate(:page => params[:page]).per_page(5)
     end
+
+    if logged_in? && current_user.role?(:baker)
+      @breads_list = create_baking_list_for('bread')
+      @muffins_list = create_baking_list_for('muffins')
+      @pastries_list = create_baking_list_for('pastries')
+    end
    
   end
 
 
   def mark_shipped
     @order_item = OrderItem.find(params[:id])
-    if @order_item.shipped_on == nil
-      @order_item.shipped_on = Date.today
-    else
-      @order_item.shipped_on = nil
-    end
+    @order_item.shipped_on = Date.today
     @order_item.save!
     @pending_orders = Order.not_shipped.chronological.paginate(:page => params[:page]).per_page(5)
   end
 
   def mark_unshipped
     @order_item = OrderItem.find(params[:id])
-    if @order_item.shipped_on == nil
-      @order_item.shipped_on = Date.today
-    else
-      @order_item.shipped_on = nil
-    end
+    @order_item.shipped_on = nil
     @order_item.save!
     @pending_orders = Order.not_shipped.chronological.paginate(:page => params[:page]).per_page(5)
   end
