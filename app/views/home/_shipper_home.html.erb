@@ -1,0 +1,46 @@
+
+<% if @pending_orders.nil? %>
+  <h4>No pending orders at this time.</h4>
+<% else %> 
+  <h4>Pending Orders</h4>
+  <table class="table table-striped", id="#order_items_shipper">
+    <thead>
+      <tr>
+        <th width="100">Date</th>
+        <th width="225">Recipient</th>
+        <th width="200">Address</th>
+        <th width="250">Items</th>
+        <th width="100">Cost</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @pending_orders.each do |order| %>
+      <tr>
+        <td><%= link_to order.date.strftime('%m/%d/%y'), order_path(order) %></td>
+        <td><%= order.address.recipient %></td>
+        <td><%= order.address.street_1 %><br />
+          <% unless order.address.street_2.blank? %>
+            <%= order.address.street_2 %><br />
+          <% end %>
+          <%= order.address.city %>, <%= order.address.state %> <%= order.address.zip %>
+        </td>
+        <td>
+          <% order.order_items.each do |oi| %>
+            <%= oi.quantity %> <%= oi.item.name %>
+              <% if oi.shipped_on.nil? %>
+                <%= link_to(image_tag('check_black.gif'), mark_shipped_path(oi.id), remote: true, method: 'patch') %>
+              <% else %>
+                <%= link_to(image_tag('check_green.gif'), mark_unshipped_path(oi.id), remote: true, method: 'patch') %>
+              <% end %><br />
+          <% end %>
+        </td>
+        <td><%= number_to_currency order.grand_total %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>	
+    
+
+
+<%= will_paginate @pending_orders, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  

@@ -22,7 +22,7 @@
           </td>
           <td><%= number_to_currency order.grand_total %></td>
           <% if order.is_destroyable? %>
-            <td><%= link_to "Delete", order, confirm: 'Are you sure?', method: :delete, class: 'button tiny radius warning' %></td>
+            <td><%= link_to "Cancel", order, confirm: 'Are you sure?', method: :delete, class: 'button tiny radius warning' %></td>
           <% end %>
         </tr>
       <% end %>

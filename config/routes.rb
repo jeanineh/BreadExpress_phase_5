@@ -37,7 +37,8 @@ BreadExpress::Application.routes.draw do
   get 'login' => 'sessions#new', :as => :login
   get 'logout' => 'sessions#destroy', :as => :logout
 
-
+  patch 'mark_shipped/:id' => 'home#mark_shipped', as: :mark_shipped
+  patch 'mark_unshipped/:id' => 'home#mark_unshipped', as: :mark_unshipped
   
   # Last route in routes.rb that essentially handles routing errors
   get '*a', to: 'errors#routing'

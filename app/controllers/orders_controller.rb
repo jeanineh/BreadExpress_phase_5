@@ -1,9 +1,9 @@
 class OrdersController < ApplicationController
   include BreadExpressHelpers::Cart
 
-  #before_action :check_login
+  before_action :check_login, only: [:create, :show, :index]
   before_action :set_order, only: [:show, :update, :destroy]
- # authorize_resource
+ 
   
   def index
     if logged_in? && !current_user.role?(:customer)
@@ -17,21 +17,25 @@ class OrdersController < ApplicationController
 
   def show
     @order_items = @order.order_items.to_a
+    authorize! :read, @order
     if current_user.role?(:customer)
       @previous_orders = current_user.customer.orders.chronological.to_a
     else
       @previous_orders = @order.customer.orders.chronological.to_a
     end
+
   end
 
   def new
     @order = Order.new
+    authorize! :new, @order
   end
 
   def create
     @order = Order.new(order_params)
     @order.date = Date.today
     @order.grand_total = calculate_cart_items_cost + @order.shipping_costs
+    authorize! :new, @order
     if @order.save
       save_each_item_in_cart(@order)
       @order.pay
@@ -42,16 +46,11 @@ class OrdersController < ApplicationController
     end
   end
 
-  def update
-    if @order.update(order_params)
-      redirect_to @order, notice: "Your order was revised in the system."
-    else
-      render action: 'edit'
-    end
-  end
-
   def destroy
+    @order = Order.find(params[:id])
+    authorize! :destroy, @order
     @order.destroy
+
     redirect_to orders_url, notice: "This order was removed from the system."
   end
 

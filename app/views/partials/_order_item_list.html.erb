@@ -11,7 +11,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @order_items.each do |oi| %>
+    <% order_items.each do |oi| %>
       <tr>
         <td align="center"><%= oi.quantity %></td>
         <td><%= link_to oi.item.name, item_path(oi.item) %></td>
@@ -20,9 +20,9 @@
         <% if controller.controller_name == 'home' %>
           <td>
             <% if oi.shipped_on.nil? %>
-              <%= link_to(image_tag('check_black.gif'), mark_shipped_path(oi.id), method: 'patch') %>
+              <%= link_to(image_tag('check_black.gif'), mark_shipped_path(oi.id), remote: true, method: 'patch') %>
             <% else %>
-              <%= link_to(image_tag('check_green.gif'), mark_unshipped_path(oi.id), method: 'patch') %>
+              <%= link_to(image_tag('check_green.gif'), mark_unshipped_path(oi.id), remote: true, method: 'patch') %>
             <% end %>
           </td>
         <% end %>

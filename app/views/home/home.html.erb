@@ -1,5 +1,7 @@
 <% if logged_in? && current_user.role?(:customer) %>
   <%= render :partial => 'customer_home' %>
+<% elsif logged_in? && current_user.role?(:shipper) %>
+  <%= render :partial => 'shipper_home' %>
 <% else %>
   <%= render :partial => 'general_home' %>
 <% end %>
