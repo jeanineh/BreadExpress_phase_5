@@ -32,7 +32,9 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.date = Date.today
     if @order.save
+      save_each_item_in_cart(@order)
       @order.pay
+      clear_cart
       redirect_to @order, notice: "Thank you for ordering from Bread Express."
     else
       render action: 'new'
@@ -83,6 +85,7 @@ class OrdersController < ApplicationController
 
   def cart
     @all_cart_items = get_list_of_items_in_cart
+    @current_cost = calculate_cart_items_cost
   end 
 
   private

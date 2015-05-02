@@ -11,7 +11,7 @@
     </tr>
   </thead>
   <tbody>
-    <% order_items.each do |oi| %>
+    <% @order_items.each do |oi| %>
       <tr>
         <td align="center"><%= oi.quantity %></td>
         <td><%= link_to oi.item.name, item_path(oi.item) %></td>
