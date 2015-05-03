@@ -1,4 +1,16 @@
-<%= f.input :first_name, input_html: {class: "avg"} %>
-<%= f.input :last_name, input_html: {class: "avg"} %>
-<%= f.input :phone, input_html: {class: "avg"} %>
-<%= f.input :email, input_html: {class: "avg"} %>
+<div class="field">
+  <%= f.label :first_name %>
+  <%= f.text_area :first_name, input_html: {class: "avg"} %>
+</div>
+<div class="field">
+  <%= f.label :last_name %>
+  <%= f.text_area :last_name, input_html: {class: "avg"} %>
+</div>
+<div class="field">
+  <%= f.label :phone %>
+  <%= f.text_area :phone, input_html: {class: "avg"} %>
+</div>
+<div class="field">
+  <%= f.label :email %>
+  <%= f.text_area :email, input_html: {class: "avg"} %>
+</div>

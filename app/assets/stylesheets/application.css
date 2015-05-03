@@ -28,3 +28,9 @@
 input.small {
 	width: 200px;
 }
+
+#map-canvas {
+  width: 500px;
+  height: 400px;
+  background-color: #CCC;
+}
