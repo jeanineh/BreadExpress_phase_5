@@ -1,17 +1,1 @@
-<%= form_for @customer, :html => { :class => 'form-horizontal' } do |customer_form| %>
-  <div class="row">
-    <div class="small-7 columns">
-      <fieldset>
-        <legend><%= controller.action_name.capitalize %> Customer</legend>
-        <%= render "customer_fields", :f => customer_form %>
-        <%= customer_form.fields_for :user do |user_form| %>
-          <%= render "user_fields", :f => user_form %>
-        <% end %> 
-      </fieldset>
-    </div>
-  </div>
-  <div class="form-actions">
-    <%= customer_form.submit nil, class: 'button radius' %>
-    <%= link_to 'Cancel', customers_path, class: 'button alert radius' %>
-  </div>
-<% end %>
+<%= render partial: "form" %>

@@ -3,6 +3,30 @@
      Register <%= link_to "here", signup_path %>. 
   </p>
 <% end %>
-<%= render partial: "partials/item_list", locals: { type: 'breads' } %>
-<%= render partial: "partials/item_list", locals: { type: 'muffins' } %>
-<%= render partial: "partials/item_list", locals: { type: 'pastries' } %>
+<div class="row">
+  <div class="small-7 columns">
+    <h3>Our Menu</h3>
+
+    <%= render partial: "partials/item_list", locals: { type: 'breads' } %>
+    <%= render partial: "partials/item_list", locals: { type: 'muffins' } %>
+    <%= render partial: "partials/item_list", locals: { type: 'pastries' } %>
+  </div>
+  <% unless @advertise_breads.empty? %>
+  <div class="panel small-4 columns">
+    <h4>Our best-selling products</h4>
+    <table>
+      <% @advertise_breads.each do |item| %>
+        <tr>
+          <% if item.picture.blank? %>
+            <td class="small_pic"><%= link_to image_tag('img_not_available.png'), item %></td>
+            <td><em><b><%=item.name%></b><br><%=item.description%></em></td>
+          <% else %>
+            <td class="small_pic"><%= link_to image_tag(item.picture), item %></td>
+            <td><em><b><%=item.name%></b><br><%=item.description%></em></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <% end %>
+</div>

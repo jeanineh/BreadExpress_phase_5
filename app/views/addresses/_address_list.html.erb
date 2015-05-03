@@ -25,15 +25,18 @@
         <td>
           <%= render :partial => "partials/address_info", locals: {address: address} %>
         </td>
-        <td><%= address.is_billing ? "Yes" : "No" %></td>      
+        <td><%= address.is_billing ? "Yes" : "No" %></td>    
+        <% if logged_in? && current_user.role?(:admin) %>  
         <td>
           <%= link_to(edit_address_path(address), class: 'button tiny radius warning') do %>
             &nbsp;Edit&nbsp;
           <% end %>
         </td>
         <td><% if address.is_destroyable? %>
-          <%= link_to "Delete", address, confirm: 'Are you sure?', method: :delete, class: 'button tiny radius warning' %></td>
+          <%= link_to "Delete", address, confirm: 'Are you sure?', method: :delete, class: 'button tiny radius warning' %>
           <% end %>
+        </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

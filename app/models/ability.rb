@@ -8,6 +8,18 @@ class Ability
       can :manage, :all
     
     elsif user.role? :customer
+      can :show, Customer do |customer|
+        customer.id == user.customer.id
+      end
+
+      can :edit, Customer do |customer|
+        customer.id == user.customer.id
+      end
+
+      can :update, Customer do |customer|
+        customer.id == user.customer.id
+      end
+      
       can :read, Address do |address|  
         address.customer_id == user.customer.id
       end
@@ -26,7 +38,7 @@ class Ability
 
       can :create, Address 
       can :create, Order
-      can :read, Item
+      can :show, Item
       can :read, ItemPrice
       can :read, OrderItem
 
@@ -39,21 +51,15 @@ class Ability
       can :read, Customer
 
     elsif user.role? :baker
-      can :read, Item
+      can :show, Item
       can :read, OrderItem
       can :read, Order
     
     else
       can :create, Customer
       can :create, User
-      can :read, :all
+      can :read, Item
 
     end
-
-
-
-
-
-
   end
 end

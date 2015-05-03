@@ -1,5 +1,8 @@
 <% if @all_cart_items.empty? %>
-  <h4 class="center">No items currently in your cart.</h4>
+  <br />
+  <em>There are currently no items in your cart.</em><br />
+  <p>Get started on your order by viewing our menu!</p>
+  <%= link_to "Explore our menu", menu_path, class: 'button radius' %>
 <% else %>
   <table class="table table-striped">
     <thead>

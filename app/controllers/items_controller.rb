@@ -3,9 +3,13 @@ class ItemsController < ApplicationController
 
   #CRUD
   def index
-  	@all_items = Item.alphabetical.paginate(:page => params[:page]).per_page(9)
-  	@inactive_items = Item.inactive.alphabetical.paginate(:page => params[:page]).per_page(9)
-  	@active_items = Item.active.alphabetical.paginate(:page => params[:page]).per_page(9)
+    if logged_in? && !current_user.role?(:customer)
+  	  @all_items = Item.alphabetical.paginate(:page => params[:page]).per_page(9)
+  	  @inactive_items = Item.inactive.alphabetical.paginate(:page => params[:page]).per_page(9)
+  	  @active_items = Item.active.alphabetical.paginate(:page => params[:page]).per_page(9)
+    else
+      redirect_to menu_path
+    end
   end
 
   def show
@@ -24,6 +28,9 @@ class ItemsController < ApplicationController
     else
       render action: 'new'
     end
+  end
+
+  def edit
   end
 
   def update

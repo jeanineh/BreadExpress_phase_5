@@ -63,10 +63,12 @@
           <% if logged_in? %>
             <%= link_to 'Logout', logout_path %>
           </li>
-          <li><%= link_to "#{current_user.username}:#{current_user.role }" %></li>
-            <% if logged_in? && current_user.role?(:customer) %>
-              <li><%= link_to "My Cart", cart_path %></li>
-            <% end %>
+          <% if logged_in? && current_user.role?(:customer) %>
+            <li><%= link_to "Hello, #{current_user.customer.first_name}", customer_path(current_user.customer) %>
+            <li><%= link_to "My Cart", cart_path %></li>
+          <% else %>
+           <li><%= link_to "#{current_user.username}:#{current_user.role }" %></li>
+          <% end %>
           <% else %>
             <li><%= link_to "Sign up", signup_path %><li>
             <li><%= link_to 'Login', login_path %></li>

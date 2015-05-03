@@ -12,13 +12,15 @@
   <b>Username</b>: <%= @customer.user.username %>
 </p>
 
-<p>
-  <b>Active</b>: <%= @customer.active ? 'Yes' : 'No' %>
-</p>
+<% if logged_in? && current_user.role?(:admin) %>
+  <p>
+    <b>Active</b>: <%= @customer.active ? 'Yes' : 'No' %>
+  </p>
+<% end %>
 
 <p>
   <em>A Bread Express customer since <%= @customer.created_at.year %>.</em>
 </p>
 <% if logged_in? && current_user.role?(:customer) %>
-  <%= link_to "My Addresses", addresses_path, class: 'button success' %>
+  <%= link_to "My Addresses", addresses_path, class: 'button success' %> &nbsp; <%= link_to "Edit my information", edit_customer_path(current_user.customer), class: 'button success' %>
 <% end %>

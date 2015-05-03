@@ -3,8 +3,10 @@
 <% else %>
   <%= render :partial => "order_list", locals: {status: 'Pending', orders: @pending_orders} %> 
   <br />
-  <%= link_to(eval("new_order_path"), class: "button radius") do %>
-    &nbsp;Add a New Order
-  <% end %> 
+  <% if logged_in? && current_user.role?(:admin) || logged_in? && current_user.role?(:customer) %>
+    <%= link_to(eval("new_order_path"), class: "button radius") do %>
+      &nbsp;Add a New Order
+    <% end %> 
+  <% end %>
 <% end %>
 

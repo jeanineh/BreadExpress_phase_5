@@ -1,9 +1,9 @@
 
 <h4> Welcome, Baker</h4>
-<% if @breads_list.nil? && @muffins_list.nil? && @pastries_list.nil? %>
-  <h4>No items to bake at this time.</h4>
+<% if @breads_list.empty? && @muffins_list.empty? && @pastries_list.empty? %>
+  <em>No items to bake at this time.</em>
 <% else %> 
-  <% if !@breads_list.nil? %>
+  <% if !@breads_list.empty? %>
   <h5>Breads to Bake</h5>
   <table class="table table-striped">
     <thead>
@@ -25,7 +25,7 @@
   <% end %>
 
   <!-- Muffins -->
-  <% if !@muffins_list.nil? %>
+  <% if !@muffins_list.empty? %>
   <h5>Muffins to Bake</h5>
   <table class="table table-striped">
     <thead>
@@ -47,7 +47,7 @@
   <% end %>
 
   <!-- Pastries -->
-  <% if !@pastries_list.nil? %>
+  <% if !@pastries_list.empty? %>
   <h5>Pastries to Bake</h5>
   <table class="table table-striped">
     <thead>

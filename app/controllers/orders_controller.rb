@@ -60,6 +60,7 @@ class OrdersController < ApplicationController
     @breads = Item.for_category("bread").alphabetical.paginate(:page => params[:page]).per_page(9)
     @muffins = Item.for_category("muffins").alphabetical.paginate(:page => params[:page]).per_page(9)
     @pastries = Item.for_category("pastries").alphabetical.paginate(:page => params[:page]).per_page(9)
+    @advertise_breads = Item.all.limit(3)
   end
 
   #cart

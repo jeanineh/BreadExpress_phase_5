@@ -10,3 +10,5 @@ To set this up, clone this repository, run the `bundle install` command to ensur
 Many objects are created with some element of randomness so you will get slightly different results each time it is run.  However, employee-type users are fixed.  In terms of employee-type users there are two admins -- Alex (username: 'alex') and Mark (username: 'mark') -- and a shipper (username: 'shipper') and a baker (username: 'baker').  All customers have a username which is 'user' with a sequential set of numbers concatentated. (user1 - user120 should exist for you to log in as and experiment.)  All users in the system have a password of 'secret'.  
 
 Instructions for what needs to be done for this project can be found in the write-up found on the [67-272 course site](http://67272.cmuis.net/projects).
+
+Some features, like the "Best-selling products" sidebar, have been hard coded, but the idea is that the pictures will be substituted with @item.picture, with @item.name and @item.description, and when clicked will lead to the item details.

@@ -1,44 +1,45 @@
 <div id="item_detailss">
-<h3><%= @item.name %></h3>
+<div class="row">
+  <div class="small-7 columns">
+    <h3><%= @item.name %></h3>
+    <p>
+      <em><%= @item.description %></em>
+    </p>
+    <% if @item.picture.blank? %>
+    <em>There is currently no picture available. Please add one <%= link_to "here.", edit_item_path(@item) %></em>
+      <p><%= image_tag 'img_not_available.png' %></p>
+    <% else %>
+      <p><%= image_tag @item.picture %></p>
+    <% end %>
+  </div>
+ 
+  <div class="small-4 columns">
+  <br><br><br>
+    <p>
+      <b>Category</b>: <%= @item.category.capitalize %>
+    </p>
 
+    <p>
+      <b>Units</b>: <%= @item.units_per_item %>
+    </p>
 
-<p>
-  <em><%= @item.description %></em>
-</p>
+    <p>
+      <b>Total weight</b>: <%= @item.weight %> lbs.
+    </p>
 
-<p>
-  <% unless @item.picture.nil? %>
-    <p><%= image_tag @item.picture %></p>
-  <% else %>
-    <p><%= image_tag "img_not_available.png" %>
-  <% end %>
-</p>
-  
-
-<p>
-  <b>Category</b>: <%= @item.category.capitalize %>
-</p>
-
-<p>
-  <b>Units</b>: <%= @item.units_per_item %>
-</p>
-
-<p>
-  <b>Total weight</b>: <%= @item.weight %> lbs.
-</p>
-
-<% if logged_in? && current_user.role?(:admin) %>
-  <p>
-    <b>Active</b>: <%= @item.active ? 'Yes' : 'No' %>
-  </p>
-<% end %>
-
-<p>
-  <b>Current Price</b>: <%= number_to_currency @item.current_price %></div>
-  <%= link_to(new_item_price_path(item_id: @item.id), id: 'new_price_link', class: 'button tiny radius', remote: true) do %>
-  <i class="fa fa-clipboard"></i>
-  &nbsp;Add Price
-<% end %>
-</p>
+    <% if logged_in? && current_user.role?(:admin) %>
+      <p>
+        <b>Active</b>: <%= @item.active ? 'Yes' : 'No' %>
+      </p>
+    <% end %>
+    <p>
+      <b>Current Price</b>: <%= number_to_currency @item.current_price %>&nbsp;&nbsp;
+      <% if logged_in? && current_user.role?(:admin) %>
+        <%= link_to(new_item_price_path(item_id: @item.id), id: 'new_price_link', class: 'button tiny radius', remote: true) do %>
+          <i class="fa fa-clipboard"></i>&nbsp;Add Price
+        <% end %>
+      <% end %>
+    </p>
+  </div>
 </div>
 

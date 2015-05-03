@@ -21,7 +21,7 @@
             <% end %>
           </td>
           <td><%= number_to_currency order.grand_total %></td>
-          <% if order.is_destroyable? %>
+          <% if logged_in? && current_user.role?(:admin) && order.is_destroyable? %>
             <td><%= link_to "Cancel", order, confirm: 'Are you sure?', method: :delete, class: 'button tiny radius warning' %></td>
           <% end %>
         </tr>
