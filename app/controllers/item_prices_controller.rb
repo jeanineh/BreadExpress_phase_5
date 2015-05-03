@@ -8,6 +8,7 @@ class ItemPricesController < ApplicationController
 
   def create
   	@item_price = ItemPrice.new(item_price_params)
+    @item = @item_price.item
 
     if @item_price.save
       respond_to do |format|

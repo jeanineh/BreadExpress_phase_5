@@ -1,20 +1,22 @@
-<%= simple_form_for @item, html: { class: 'form-horizontal' } do |f| %>
-  <fieldset>
-    <legend><%= controller.action_name.capitalize %> Item</legend>
-
-    <%= f.input :name, input_html: {class: "avg"} %>
-    <%= f.input :category, collection: [['Bread','bread'],['Muffins','muffins'],['Pastries','pastries']], include_blank: true, input_html: {class: "avg"} %>
-    <%= f.input :units_per_item, input_html: {class: "avg"} %>
-    <%= f.input :weight, input_html: {class: "avg"} %>
-    <%= f.input :description, input_html: {class: "avg"} %>
-    <div class="avg">
-      <%= f.label :picture %>
-      <%= f.file_field :picture %>
+<%= simple_form_for @item, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="row">
+    <div class="small-7 columns">
+      <fieldset>
+        <legend><%= controller.action_name.capitalize %> Item</legend>
+          <%= f.input :name, input_html: {class: "avg"} %>
+          <%= f.input :category, collection: [['Bread','bread'],['Muffins','muffins'],['Pastries','pastries']], include_blank: true, input_html: {class: "avg"} %>
+          <%= f.input :units_per_item, input_html: {class: "avg"} %>
+          <%= f.input :weight, input_html: {class: "avg"} %>
+          <%= f.input :description, input_html: {class: "avg"} %>
+          <div class="avg">
+            <%= f.label :picture %>
+            <%= f.file_field :picture %>
+          </di>
+      </fieldset>
     </div>
-
-    <div class="form-actions">
-      <%= f.submit nil, :class => 'button radius' %>
-      <%= link_to 'Cancel', items_path, :class => 'button alert radius' %>
-    </div>
-  </fieldset>
+  </div>
+  <div class="form-actions">
+    <%= f.submit nil, class: 'button radius' %>
+    <%= link_to 'Cancel', items_path, class: 'button alert radius' %>
+  </div>
 <% end %>

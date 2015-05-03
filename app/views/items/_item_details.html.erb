@@ -1,4 +1,4 @@
-<div id="item_details">
+<div id="item_detailss">
 <h3><%= @item.name %></h3>
 
 
@@ -20,14 +20,6 @@
 </p>
 
 <p>
-  <b>Current Price</b>: <%= number_to_currency @item.current_price %>
-  <%= link_to(new_item_price_path(item_id: @item.id), id: 'new_price_link', class: 'button tiny radius', remote: true) do %>
-  <i class="fa fa-clipboard"></i>
-  &nbsp;Add Price
-<% end %>
-</p>
-
-<p>
   <b>Units</b>: <%= @item.units_per_item %>
 </p>
 
@@ -40,5 +32,13 @@
     <b>Active</b>: <%= @item.active ? 'Yes' : 'No' %>
   </p>
 <% end %>
+
+<p>
+  <b>Current Price</b>: <%= number_to_currency @item.current_price %></div>
+  <%= link_to(new_item_price_path(item_id: @item.id), id: 'new_price_link', class: 'button tiny radius', remote: true) do %>
+  <i class="fa fa-clipboard"></i>
+  &nbsp;Add Price
+<% end %>
+</p>
 </div>
 
