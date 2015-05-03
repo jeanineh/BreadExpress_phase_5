@@ -18,4 +18,10 @@
 <% end %>
 
 <!-- Add buttons to list all, edit project or destroy object -->
-<%= render partial: "partials/object_options", locals: {model_name: "item", object: @item}  %>
+<% if !logged_in? || logged_in? && current_user.role?(:customer) %>
+  <%= link_to "Back to the menu", menu_path, class: 'button radius' %>
+<% elsif logged_in? && current_user.role?(:admin) %>
+  <%= link_to "Display All Items", items_path, class: 'button radius' %>&nbsp;<%=link_to "Edit #{@item.name}", edit_item_path, class: 'button radius' %>
+<% else %>
+  <%= link_to "Display All Items", items_path, class: 'button radius' %>
+<% end %>

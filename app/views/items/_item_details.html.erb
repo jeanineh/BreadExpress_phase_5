@@ -6,15 +6,19 @@
       <em><%= @item.description %></em>
     </p>
     <% if @item.picture.blank? %>
-    <em>There is currently no picture available. Please add one <%= link_to "here.", edit_item_path(@item) %></em>
+      <% if logged_in? && current_user.role?(:admin) %>
+        <em>There is currently no picture available. Please add one <%= link_to "here.", edit_item_path(@item) %></em>
+      <% end %>
       <p><%= image_tag 'img_not_available.png' %></p>
     <% else %>
       <p><%= image_tag @item.picture %></p>
     <% end %>
   </div>
- 
-  <div class="small-4 columns">
+
+
   <br><br><br>
+
+  <div class="panel small-4 columns">
     <p>
       <b>Category</b>: <%= @item.category.capitalize %>
     </p>
@@ -42,4 +46,8 @@
     </p>
   </div>
 </div>
+<% if !logged_in? %>
+  <%= link_to "Explore our menu", menu_path, class: 'button success' %>
+<% end %>
+
 

@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-
+  authorize_resource
   #CRUD
   def index
     if logged_in? && !current_user.role?(:customer)

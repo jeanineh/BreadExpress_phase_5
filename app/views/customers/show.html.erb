@@ -9,5 +9,5 @@
 
 <!-- Add buttons to list all, edit project or destroy object -->
 <% if logged_in? && current_user.role?(:admin) %>
-  <%= render partial: "partials/object_options", locals: {model_name: "customer", object: @customer}  %>
+  <%= link_to "Display All Customers", customers_path, class: 'button radius' %>&nbsp;<%=link_to "Edit #{@customer.proper_name}", edit_customer_path, class: 'button radius' %> 
 <% end %>

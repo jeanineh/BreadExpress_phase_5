@@ -13,6 +13,11 @@
       &nbsp;Return to My Orders
     <% end %>
   </div>
+<% elsif logged_in? && current_user.role?(:admin) %>
+  <%= link_to "Display All Orders", orders_path, class: 'button radius' %> &nbsp; 
+  <% if @order.is_destroyable? %>
+    <%= link_to "Destroy Order", @order, confirm: "Are you sure?", method: :delete, class: 'button warning radius' %>
+  <% end %>
 <% else %>
-  <%= render partial: "partials/object_options", locals: {model_name: "order", object: @order}  %>
+  <%= link_to "Display All Orders", orders_path, class: 'button radius' %>
 <% end %>

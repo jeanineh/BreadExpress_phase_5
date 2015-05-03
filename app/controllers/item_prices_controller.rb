@@ -3,13 +3,14 @@ class ItemPricesController < ApplicationController
 
   def new
   	@item_price = ItemPrice.new
+    authorize! :create, @item_price
   end
 
 
   def create
   	@item_price = ItemPrice.new(item_price_params)
     @item = @item_price.item
-
+    authorize! :create, @item_price
     if @item_price.save
       respond_to do |format|
         format.html { redirect_to items_path, notice: "Price was added to the system." }
@@ -20,11 +21,6 @@ class ItemPricesController < ApplicationController
     else
       render action: 'new'
     end
-  end
-
-  def destroy
-  	@item_price.destroy
-    redirect_to items_url, notice: "This price was removed from the system."
   end
 
   private

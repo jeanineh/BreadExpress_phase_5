@@ -48,7 +48,6 @@ class Ability
       can :read, Item
       can :update, OrderItem
       can :update, Order
-      can :read, Customer
 
     elsif user.role? :baker
       can :show, Item

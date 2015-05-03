@@ -34,6 +34,10 @@ input.small {
 	width: 200px;
 }
 
+.tiny_font {
+	font-size: 0.8em;
+}
+
 #map-canvas {
   width: 500px;
   height: 400px;
