@@ -55,19 +55,11 @@ class OrdersController < ApplicationController
   end
 
   #other pages
-  def breads
-    @breads = Item.for_category("bread").alphabetical.paginate(:page => params[:page]).per_page(9)
-  end
-
-  def muffins
-    @muffins = Item.for_category("muffins").alphabetical.paginate(:page => params[:page]).per_page(9)
-  end
-
-  def pastries
-    @pastries = Item.for_category("pastries").alphabetical.paginate(:page => params[:page]).per_page(9)
-  end
 
   def menu
+    @breads = Item.for_category("bread").alphabetical.paginate(:page => params[:page]).per_page(9)
+    @muffins = Item.for_category("muffins").alphabetical.paginate(:page => params[:page]).per_page(9)
+    @pastries = Item.for_category("pastries").alphabetical.paginate(:page => params[:page]).per_page(9)
   end
 
   #cart

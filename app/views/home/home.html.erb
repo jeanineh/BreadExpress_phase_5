@@ -4,6 +4,8 @@
   <%= render :partial => 'shipper_home' %>
 <% elsif logged_in? && current_user.role?(:baker) %>
   <%= render :partial => 'baker_home' %>
+<% elsif logged_in? && current_user.role?(:admin) %>
+  <%= render :partial => 'admin_home' %>
 <% else %>
   <%= render :partial => 'general_home' %>
 <% end %>

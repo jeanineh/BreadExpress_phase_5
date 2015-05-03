@@ -32,15 +32,17 @@ class Address < ActiveRecord::Base
     "#{self.recipient} : #{self.street_1}"
   end
 
+  def is_destroyable?
+    @destroyable = self.orders.empty?
+  end
+
   # Callbacks
   before_destroy :is_destroyable?
   after_rollback :make_inactive_if_trying_to_destroy
 
   # Other methods
   private
-  def is_destroyable?
-    @destroyable = self.orders.empty?
-  end
+  
   
   def make_inactive_if_trying_to_destroy
     if !@destroyable.nil? && @destroyable == false

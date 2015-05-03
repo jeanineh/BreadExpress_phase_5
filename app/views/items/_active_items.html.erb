@@ -11,6 +11,7 @@
         <th width="125">Price</th>
         <th width="200">Units</th>
         <th width="200">Weight</th>
+        <th>&nbsp;</th>
       </tr>
     </thead>
     <tbody>
@@ -22,6 +23,9 @@
           <td><%= number_to_currency item.current_price %></td>
           <td><%= item.units_per_item %> <%= item.category == 'bread' ? 'loaf' : item.category %></td>
           <td><%= item.weight %></td>
+          <td><% if item.is_destroyable? %>
+            <%= link_to "Delete", item, confirm: 'Are you sure?', method: :delete, class: 'button tiny radius warning' %></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>

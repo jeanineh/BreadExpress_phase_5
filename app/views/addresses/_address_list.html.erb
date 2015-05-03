@@ -31,7 +31,9 @@
             &nbsp;Edit&nbsp;
           <% end %>
         </td>
-        <td><%= link_to "Delete", address, confirm: 'Are you sure?', method: :delete, class: 'button tiny radius warning' %></td>
+        <td><% if address.is_destroyable? %>
+          <%= link_to "Delete", address, confirm: 'Are you sure?', method: :delete, class: 'button tiny radius warning' %></td>
+          <% end %>
       </tr>
     <% end %>
   </tbody>

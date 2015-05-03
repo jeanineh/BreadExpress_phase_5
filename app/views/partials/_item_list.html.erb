@@ -1,5 +1,5 @@
 <% unless eval("@#{type}").nil? || eval("@#{type}").empty? %>
-  <h5><%= "bread".capitalize %></h5>
+  <h5><%= "#{type}".capitalize %></h5>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -28,8 +28,4 @@
       <% end %>
     </tbody>
   </table>
-  <% if !logged_in? %>
-    <p>Please <%= link_to "log in", login_path %> to order. Don't have an account? 
-      Register <%= link_to "here", signup_path %>. </p>
-  <% end %>
 <% end %>

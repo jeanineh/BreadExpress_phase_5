@@ -6,7 +6,7 @@ class HomeController < ApplicationController
       @previous_orders = current_user.customer.orders.chronological.to_a
     end
 
-    if logged_in? && current_user.role?(:shipper)
+    if logged_in? && current_user.role?(:shipper) || current_user.role?(:admin)
       @pending_orders = Order.not_shipped.chronological.paginate(:page => params[:page]).per_page(5)
     end
 

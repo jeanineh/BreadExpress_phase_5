@@ -1,0 +1,48 @@
+<h3>Welcome, <%= current_user.username %>.</h3>
+<br />
+<div class="row">
+  <div class="small-7 columns">
+    <div class="panel callout">
+      <h4>What's New</h4>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th width="225"><b>New Users</b></th>
+            <th width="250"><b>Sales</b></th>
+            <th width="250"><b>New Orders</b></th>
+            <th width="250"><b>Currently Pending Orders</b></th>
+            <th>&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>21</td>
+            <td>$1,050</td>
+            <td>53</td>
+            <td><%= @pending_orders.size %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div><br />
+    <div class="panel callout">
+      <%= image_tag 'graph.png' %>
+    </div>
+   
+  </div>
+  <div class="small-1 columns">
+    &nbsp;
+  </div>
+  <div class="small-4 columns">
+    <div class="panel clearfix">  
+      <h4>Manage</h4>
+        <p>
+          <%= link_to "All Customers", customers_path %><br />
+          <%= link_to "All Addresses", addresses_path %><br />
+          <%= link_to "All Orders", orders_path %><br />
+          <%= link_to "All Items", items_path %>
+        </p>
+    </div>
+  </div>
+</div>
+
+

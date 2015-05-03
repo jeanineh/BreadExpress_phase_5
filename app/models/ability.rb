@@ -44,7 +44,10 @@ class Ability
       can :read, Order
     
     else
+      can :create, Customer
+      can :create, User
       can :read, :all
+
     end
 
 
