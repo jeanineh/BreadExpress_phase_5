@@ -83,5 +83,10 @@ class UserTest < ActiveSupport::TestCase
       assert_equal ["admin","admin","baker","shipper","shipper"], User.by_role.all.map(&:role)
     end
 
+    should "have working authentication by username and password" do
+      user1= FactoryGirl.build(:user, username: "wheezy", password: "secret", password_confirmation: "secret")
+      assert_equal nil, User.authenticate("wheezy", "secret")
+    end
+
   end
 end

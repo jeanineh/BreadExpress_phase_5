@@ -104,6 +104,10 @@ class AddressTest < ActiveSupport::TestCase
       deny @alexe_a2.orders.empty?
       destroy_orders
     end
+
+    should "have a name method for address" do
+      assert_equal "Jeff Egan : 4000 Forbes Ave", @alexe_a2.name
+    end
     
   end
 end
