@@ -1,5 +1,5 @@
 <% if @customer_addresses.empty? %>
-  <p><em>You have no addresses at this time. Add one.</em></p>
+  <p><em>You have no addresses at this time. Add one <%=link_to "here.", new_address_path %></em></p>
 <% else %>
 <h4>Addresses</h4>
 <table class="table table-striped">

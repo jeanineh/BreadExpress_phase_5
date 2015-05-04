@@ -31,6 +31,7 @@ class CustomersController < ApplicationController
     if @customer.save
       redirect_to @customer, notice: "#{@customer.proper_name} was added to the system."
     else
+      @customer.user = User.new
       render action: 'new'
     end
   end
