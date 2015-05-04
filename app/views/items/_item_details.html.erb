@@ -37,7 +37,12 @@
       </p>
     <% end %>
     <p>
-      <b>Current Price</b>: <%= number_to_currency @item.current_price %>&nbsp;&nbsp;
+      <b>Current Price</b>: 
+      <% if @item.current_price.blank? %>
+        <em>No price has been set for this item.</em>
+      <% else %>
+        <%= number_to_currency @item.current_price %>&nbsp;&nbsp;
+      <% end %>
       <% if logged_in? && current_user.role?(:admin) %>
         <%= link_to(new_item_price_path(item_id: @item.id), id: 'new_price_link', class: 'button tiny radius', remote: true) do %>
           <i class="fa fa-clipboard"></i>&nbsp;Add Price

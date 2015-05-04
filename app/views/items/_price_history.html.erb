@@ -1,3 +1,6 @@
+<% if @item_prices.empty? %>
+  <em>No price has been set for this item.</em>
+<% else %>
   <table class="table table-striped" id="item_price_history">
     <thead>
       <tr>
@@ -7,6 +10,7 @@
       </tr>
     </thead>
     <tbody>
+     
       <% @item_prices.each do |item_price| %>
         <tr>
           <td><%= number_to_currency item_price.price %></td>
@@ -20,5 +24,6 @@
       <% end %>
     </tbody>
   </table> 
+<% end %>
 
 <p>&nbsp;</p>
