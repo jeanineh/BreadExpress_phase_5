@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     user = User.find_by_username(params[:username])
     if user && User.authenticate(params[:username], params[:password])
       session[:user_id] = user.id
-      if !user.role?(:admin)
+      if user.role?(:customer)
         create_cart
       end
       redirect_to home_path, notice: "Logged in!"

@@ -1,6 +1,6 @@
 <h4>Similar Items: </h4>
 <table>
-  <% Item.for_category(@item.category).limit(4).each do |item| %>
+  <% @related_items.each do |item| %>
     <% if item.picture.blank? %>
       <td class="smaller_icon"><%= link_to image_tag('img_not_available.png'), item %><br>
         <p class="tiny_font"><%= link_to item.name, item_path(item) %></p></td>
