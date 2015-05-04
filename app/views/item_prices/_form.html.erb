@@ -3,7 +3,7 @@
     <legend><%= controller.action_name.capitalize %> Item Price</legend>
 
     <%= f.input :price, input_html: {class: "avg"} %>
-    <%= f.input :start_date, input_html: {id: "datepicker"} %>
+    <%= f.input :start_date, as: :date, order: [:month, :day, :year], input_html: {class: "datepicker"} %>
     <%= f.input :item_id, collection: Item.active.alphabetical, input_html: {class: "avg"} %>
 
     <div class="form-actions">

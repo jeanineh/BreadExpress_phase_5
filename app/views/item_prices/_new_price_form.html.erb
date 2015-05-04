@@ -1,11 +1,13 @@
 
 <%= simple_form_for @item_price, html: { :class => 'form-horizontal' }, remote: true do |f| %>
-    <%= f.input :price, label: "Price", input_html: {class: "avg"} %>
-    <%= f.input :start_date, label: "Start Date", input_html: {:id => "datepicker"} %>
-    <%= f.input :item_id, as: :hidden, input_html: { value: params[:item_id] } %>
+  <%= f.input :price, input_html: {class: "avg"} %>
+  <div id="datepicker">
+  <%= f.input :start_date, input_html: { class: "avg datepicker" } %>
+  </div>
+  <%= f.input :item_id, as: :hidden, input_html: { value: params[:item_id] } %>
   
-    <div class="form-actions">
-      <%= f.submit nil, class: 'button radius' %>
-      <%= link_to 'Cancel', items_path, class: 'button radius alert' %>
-    </div>
+  <div class="form-actions">
+    <%= f.submit nil, class: 'button radius' %>
+    <%= link_to 'Cancel', items_path, class: 'button radius alert' %>
+  </div>
 <% end %>

@@ -6,7 +6,7 @@
         <th width="300">Name</th>
         <th width="100">Price</th>
         <th width="100">Units</th>
-        <% if controller.controller_name == 'orders' %>
+        <% if controller.controller_name == 'orders' && logged_in? && current_user.role?(:customer) %>
           <th width="100">&nbsp;</th>
         <% end %>
       </tr>
@@ -16,8 +16,16 @@
         <tr>
           <td><%= link_to item.name, item_path(item) %></td>
           <td><%= number_to_currency item.current_price %></td>
-          <td><%= item.units_per_item %> <%= item.category == 'bread' ? 'loaf' : item.category %></td>
-          <% if controller.controller_name == 'orders' && logged_in? %>
+          <td><%= item.units_per_item %> 
+              <% if item.category == 'bread' && item.units_per_item == 1 %>
+                <%= 'loaf' %>
+              <% elsif item.category == 'bread' && item.units_per_item > 1 %>
+                <%= 'loaves' %>
+              <% else %>
+                <%= item.category %>
+              <% end %>
+          </td>
+          <% if controller.controller_name == 'orders' && logged_in? && current_user.role?(:customer) %>
             <td>
               <%= link_to(add_to_cart_path(:id => item.id), class: 'button tiny radius') do %>
                 &nbsp;Add to Cart&nbsp;

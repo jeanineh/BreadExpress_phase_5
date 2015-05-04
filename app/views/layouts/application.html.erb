@@ -4,11 +4,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <script>
-      $(function() {
-      $( "#datepicker" ).datepicker();
-    });
-    </script>
     <title>A &amp; M Bread Express</title>
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
@@ -20,7 +15,6 @@
       <%= link_to image_tag('breadexpress_title.png'), home_path %>
     </div>
     <%= render :partial => "partials/nav" %>
-    
     <div class="row">
       <div class="small-12 columns" id="main_content">
         <%= render :partial => "partials/flash" %>
@@ -33,5 +27,11 @@
       </div>
     </footer> 
     <%= javascript_include_tag "application" %>
+    <script>
+      $(function() {
+        $( "#datepicker" ).datepicker();
+      });
+    </script>
+
   </body>
 </html>
