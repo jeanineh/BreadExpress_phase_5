@@ -26,7 +26,7 @@
           <%= render :partial => "partials/address_info", locals: {address: address} %>
         </td>
         <td><%= address.is_billing ? "Yes" : "No" %></td>    
-        <% if logged_in? && current_user.role?(:admin) %>  
+        <% if logged_in? && current_user.role?(:admin) || logged_in? && current_user.role?(:customer) %>  
         <td>
           <%= link_to(edit_address_path(address), class: 'button tiny radius warning') do %>
             &nbsp;Edit&nbsp;
