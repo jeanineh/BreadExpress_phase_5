@@ -4,5 +4,5 @@
 <% if logged_in? && current_user.role?(:admin) %>
   <%= f.input :role, :collection => User::ROLES, :prompt => true, input_html: {class: "avg"} %>
 <% else %>
-  <%= f.input :role, :as => :hidden, input_html: {class: "avg", value: 'customer'} %>
+  <%= f.input :role, :as => :hidden, input_html: {class: "avg"} %>
 <% end %>

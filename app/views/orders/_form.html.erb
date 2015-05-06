@@ -2,7 +2,7 @@
   <fieldset>
     <legend><%= controller.action_name.capitalize %> Order</legend>
 
-    <% if current_user.role?(:admin) %>
+    <% if logged_in? && current_user.role?(:admin) %>
       <%= f.input :customer_id, collection: Customer.active.alphabetical, include_blank: true, input_html: {class: "avg"} %>
     <% else %>
       <%= f.input :customer_id, as: :hidden, input_html: { value: current_user.customer.id } %>

@@ -25,6 +25,11 @@
 </p>
 
 <p>
+  <b>Shipping Address</b><br>
+  <%= render :partial => "partials/address_info", locals: {address: @order.address} %>
+</p>
+
+<p>
   <%= render partial: "partials/order_item_list", locals: {order_items: @order_items, date: @order.date} %>
 </p>
 

@@ -1,22 +1,32 @@
 class CustomersController < ApplicationController
   include ActionView::Helpers::NumberHelper
-  before_action :check_login
+  before_action :check_login, only: [:show, :index, :edit, :update, :destroy]
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
-  authorize_resource
+  #authorize_resource
   
   def index
     @active_customers = Customer.active.alphabetical.paginate(:page => params[:page]).per_page(10)
     @inactive_customers = Customer.inactive.alphabetical.paginate(:page => params[:page]).per_page(10)
+    authorize! :index, @active_customers
+    authorize! :index, @inactive_customers
   end
 
   def show
     @previous_orders = @customer.orders.chronological
     @customer_addresses = @customer.addresses
+    authorize! :show, @customer
   end
 
   def new
-    @customer = Customer.new
-    @customer.user = User.new
+    if logged_in? && current_user.role?(:admin)
+      @customer = Customer.new
+      @customer.user = User.new
+    elsif logged_in?
+      redirect_to home_path, notice: "Please log out to create a new account."
+    else
+      @customer = Customer.new
+      @customer.user = User.new
+    end
   end
 
   def edit
@@ -24,12 +34,17 @@ class CustomersController < ApplicationController
     @customer.phone = number_to_phone(@customer.phone)
     # should have a user associated with customer, but just in case...
     @customer.user = current_user
+    authorize! :edit, @customer
   end
 
   def create
     @customer = Customer.new(customer_params)
     if @customer.save
-      redirect_to @customer, notice: "#{@customer.proper_name} was added to the system."
+      if logged_in?
+        redirect_to @customer, notice: "#{@customer.proper_name} was added to the system."
+      else 
+        redirect_to login_path, notice: "Signed up successfully! Please log in to start ordering."
+      end
     else
       @customer.user = User.new
       render action: 'new'
@@ -38,7 +53,7 @@ class CustomersController < ApplicationController
 
   def update
     # just in case customer trying to hack the http request...
-    reset_username_param unless current_user.role? :admin
+   # reset_username_param unless current_user.role? :admin
     if @customer.update(customer_params)
       redirect_to @customer, notice: "#{@customer.proper_name} was revised in the system."
     else
@@ -52,7 +67,7 @@ class CustomersController < ApplicationController
   end
 
   def customer_params
-    reset_role_param unless current_user.role? :admin
+    #reset_role_param unless current_user.role? :admin
     params.require(:customer).permit(:first_name, :last_name, :email, :phone, :active, user_attributes: [:id, :username, :password, :password_confirmation, :role, :active])
   end
 

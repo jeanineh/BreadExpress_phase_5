@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   include BreadExpressHelpers::Cart
   include BreadExpressHelpers::Shipping
-  before_action :check_login, only: [:create, :show, :index]
+  before_action :check_login, only: [:create, :new, :show, :index]
   before_action :set_order, only: [:show, :update, :destroy]
  
   
@@ -35,7 +35,7 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.date = Date.today
     @order.grand_total = calculate_cart_items_cost + calculate_cart_shipping
-    authorize! :new, @order
+    authorize! :create, @order
     if @order.save
       save_each_item_in_cart(@order)
       @order.pay
